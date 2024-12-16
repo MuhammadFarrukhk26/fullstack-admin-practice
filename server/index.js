@@ -5,10 +5,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-import clientRoutes from "./routes/client";
-import generalRoutes from "./routes/general";
-import managementRoutes from "./routes/management";
-import salesRoutes from "./routes/sales";
+import clientRoutes from "./routes/client.js";
+import generalRoutes from "./routes/general.js";
+import managementRoutes from "./routes/management.js";
+import salesRoutes from "./routes/sales.js";
+
+// data imports
+
+import User from "./models/User.js";
+import { dataUser } from "./data/index.js";
 
 // CONFIGURATION
 
@@ -39,6 +44,9 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+    // ONLY ADD DATA ONE TIME
+
+   // User.insertMany(dataUser);
   })
   .catch((error) => {
     console.log(`${error} did not connect`);
