@@ -13,7 +13,10 @@ import salesRoutes from "./routes/sales.js";
 // data imports
 
 import User from "./models/User.js";
-import { dataUser } from "./data/index.js";
+import { dataUser, dataProduct, dataProductStat } from "./data/index.js";
+import Product from "./models/Product.js";
+import ProductStat from "./models/ProductStat.js";
+
 
 // CONFIGURATION
 
@@ -37,6 +40,9 @@ app.use("/sales", salesRoutes);
 // MONGOOSE SETUP
 
 const PORT = process.env.PORT || 9000;
+console.log(process.env.PORT);
+
+console.log(process.env.MONGO_URL);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -45,8 +51,9 @@ mongoose
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
     // ONLY ADD DATA ONE TIME
-
-   // User.insertMany(dataUser);
+    // Product.insertMany(dataProduct);
+    // ProductStat.insertMany(dataProductStat);
+    // User.insertMany(dataUser);
   })
   .catch((error) => {
     console.log(`${error} did not connect`);
