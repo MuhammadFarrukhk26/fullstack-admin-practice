@@ -52,8 +52,9 @@ const Customers = () => {
     <Box m="1.5rem 2.5rem">
       <Header title="CUSTOMERS" subtitle="List of all customers" />
       <Box
-        mt="40px"
-        height="75vh"
+        mt="10px"
+        height="70vh"
+        width="100%"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -84,6 +85,11 @@ const Customers = () => {
           getRowId={(row) => row._id}
           columns={columns}
           loading={isLoading}
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize: 25, page: 0 },
+            },
+          }}
         />
       </Box>
     </Box>
